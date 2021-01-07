@@ -8,6 +8,7 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
 PROJECT_PATH=backend
+WEB_PROJECT_PATH=backend
 
 echo "-----> My Subdir buildpack: path is $PROJECT_PATH"
 echo "       creating cache: $CACHE_DIR"
@@ -26,4 +27,6 @@ echo "       copying work dir from cache $TMP_DIR to build dir $BUILD_DIR"
 cp -R $TMP_DIR/. $BUILD_DIR/
 echo "       cleaning tmp dir $TMP_DIR"
 rm -rf $TMP_DIR
+echo "       building web project $WEB_PROJECT_PATH"
+yarn --cwd ~/$WEB_PROJECT_PATH/ build
 exit 0
